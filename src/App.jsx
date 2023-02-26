@@ -28,17 +28,21 @@ function App() {
   const [images, setImages] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingInitial, setLoadingInitial] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [open, setOpen] = useState(false);
   const isFirstRun = useRef(true);
 
   const getAllImages = async () => {
     try {
+      setLoadingInitial(true);
       const { data: images } = await customAxios.get("/photos");
       // console.log(images);
       setImages(images);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingInitial(false);
     }
   };
 
@@ -236,7 +240,9 @@ function App() {
           <Skeleton variant="rectangular" height={600} width="100%" />
         )}
       </Dialog>
-      {images.length > 0 ? (
+      {loadingInitial ? (
+        <CircularProgress style={{ marginTop: 30 }} />
+      ) : images.length > 0 ? (
         <ImageList cols={3} rowHeight={230} variant="quilted">
           {images.map((image) => (
             <ImageListItem key={image.id}>
