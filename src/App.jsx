@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
 import { customAxios } from "./utils";
 import {
@@ -8,8 +7,6 @@ import {
   CircularProgress,
   Dialog,
   DialogContent,
-  DialogTitle,
-  Divider,
   IconButton,
   ImageList,
   ImageListItem,
