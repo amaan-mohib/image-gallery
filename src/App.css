@@ -80,7 +80,8 @@
   cursor: pointer;
 }
 .social {
-  gap: 20px;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .head1-right {
   display: flex;
